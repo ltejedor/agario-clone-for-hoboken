@@ -1,8 +1,8 @@
 /**
- *  Re-group the FFT into more meaningful values by 
+ *  Re-group the FFT into more meaningful values by
  *  splitting into one-third-octave bands,
  *  and by smoothing each point with its neighbors.
- *  
+ *
  *  Plot over time.
  */
 
@@ -61,7 +61,7 @@ function draw() {
 /**
  *  Divides an fft array into octaves with each
  *  divided by three, or by a specified "slicesPerOctave".
- *  
+ *
  *  There are 10 octaves in the range 20 - 20,000 Hz,
  *  so this will result in 10 * slicesPerOctave + 1
  *
@@ -79,7 +79,7 @@ function splitOctaves(spectrum, slicesPerOctave) {
   var n = slicesPerOctave|| 3;
   var nthRootOfTwo = Math.pow(2, 1/n);
 
-  // the last N bins get their own 
+  // the last N bins get their own
   var lowestBin = slicesPerOctave;
 
   var binIndex = len - 1;
