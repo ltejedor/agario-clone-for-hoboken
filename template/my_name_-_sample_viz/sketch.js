@@ -6,11 +6,22 @@ var mainCircle;
 var x;
 var y;
 
+var rCol;
+var gCol;
+var bCol;
+
+var points = 0;
+
 function preload() {
 
 }
 
 function setup() {
+
+	rCol = Math.random() * 255;
+	gCol = Math.random() * 255;
+	bCol = Math.random() * 255;
+
 	var cnv = createCanvas(windowWidth, windowHeight);
 
 	x = width/2;
@@ -45,8 +56,19 @@ function setup() {
 }
 
 function draw() {
-	fill(255, 255, 255);
-	stroke(255,255,255);
+	if(rCol < 255 || bCol < 255 || gCol < 255){
+		rCol++;
+		bCol++;
+		gCol++;
+	}
+	else{
+		rCol = Math.random() * 255;
+		gCol = Math.random() * 255;
+		bCol = Math.random() * 255;
+	}
+
+	fill(rCol, gCol, bCol);
+	stroke(rCol,gCol,bCol);
 	strokeWeight(6);
 	ellipse(x, y, 35, 35);
 
@@ -60,6 +82,13 @@ function draw() {
 	strokeWeight(3);
 
 	mainCircle = ellipse(x, y, 35, 35);
+
+	fill(0);
+	stroke(255);
+
+	points = checkPoints();
+
+	text('Score: ' + points + ' / ' + height * width, 10, 30);
 }
 
 function newPosx(){
@@ -80,3 +109,13 @@ function newPosy(){
 	}
 }
 
+function checkPoints(){
+	console.log (x + 'vs' + mouseX);
+	if((Math.abs(x - mouseX) < 10) && (Math.abs(y - mouseY) < 10) ){
+		return points;
+	}
+	else{
+		points++;
+		return points;
+	}
+}
